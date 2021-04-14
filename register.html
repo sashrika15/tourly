@@ -33,7 +33,7 @@
     </head>
 
     <body>
-      <!-- ======= Header ======= -->
+    <!-- ======= Header ======= -->
         <header id="header" class="fixed-top">
             <div class="container d-flex align-items-center">
 
@@ -43,8 +43,7 @@
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">About Us</a></li>
                 <li class="register text-center active"><a href="register.html">Register Now</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
@@ -53,7 +52,29 @@
         </header><!-- End Header -->
 
 
-
+        <!---Login form-->
+        <section id="register">
+            <form action="/lgoin" method="POST">
+                <div class="login">
+                    <div class="login-screen">
+                        <div class="app-title">
+                            <h1>Login</h1>
+                        </div>
+                        <div class="login-form">
+                            <div class="control-group">
+                                <input type="text" class="login-field" value="" placeholder="Username" name="username">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                            </div>
+                            <div class="control-group">
+                                <input type="password" class="login-field" value="" placeholder="Password" name="password">
+                                <label class="login-field-icon fui-lock" for="login-pass"></label>
+                            </div>
+                            <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
 
 
 
