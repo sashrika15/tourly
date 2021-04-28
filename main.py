@@ -17,3 +17,18 @@ def home():
 @app.route('/register')
 def register():
     return render_template('register.html')
+
+@app.route('/register',methods=['POST', 'GET'])
+def login():
+    username=request.form['username']
+    password=request.form['password']
+    
+    cur = connection.cursor()
+    cur.execute("SELECT * from accounts WHERE username=%s AND password= %s",(username,password))
+    account = cur.fetchone()
+    if account:
+        return "Login successful"
+    else:
+        return "No you cant login"
+
+    return render_template('register.html')
