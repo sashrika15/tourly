@@ -1,5 +1,5 @@
 import pymysql.cursors
-from flask import Flask, render_template,request,json
+from flask import Flask, render_template,request,json,redirect,url_for
 
 connection = pymysql.connect(host='localhost',
                             user='root',
@@ -27,8 +27,16 @@ def login():
     cur.execute("SELECT * from accounts WHERE username=%s AND password= %s",(username,password))
     account = cur.fetchone()
     if account:
-        return "Login successful"
+        return redirect(url_for('profile'))
     else:
-        return "No you cant login"
+        return "Invalid username/password"
 
     return render_template('register.html')
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/preference')
+def pre():
+    return render_template('preference.html')
