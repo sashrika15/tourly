@@ -15,3 +15,12 @@ git clone https://github.com/sashrika15/tourly.git
 cd tourly
 ```
 - Click on index.html to open it in your browser
+
+## Updates
+
+Running on flask
+localhost:5000
+
+## To-do
+
+Connext to db and complete login functionality
