@@ -27,6 +27,7 @@ Running on flask
 localhost:5000
 
 ## To-do
-- Convert preference page to actually giving dest spots according to preference
-- Integrate tourist spots api to give location descriptions 
-- Maps to mark route for spots
+
+- Add the preferences to the api request
+- Add markers for locations on map
+

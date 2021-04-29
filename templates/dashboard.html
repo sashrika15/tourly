@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Tourly - Registration</title>
+        <title>Tourly - Dashboard</title>
 
         <!-- Favicons -->
         <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicon_io/apple-touch-icon.png">
@@ -29,50 +29,61 @@
         <!-- <link href="css/style.css" rel="stylesheet"> -->
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
 
+        <!-- Mapbox -->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+
+
+
     </head>
 
     <body>
     <!-- ======= Header ======= -->
-        <header id="header" class="fixed-top">
-            <div class="container d-flex align-items-center">
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+    
+        <h1 class="logo mr-auto"><a href="/profile">Tourly</a></h1>
+    
+    
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li><a href="/profile">Home</a></li>
+                <li><a href="/preference">Preferences</a></li>
+                <li class="active"><a href="/dashboard">Dashboard</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+    
+        </div>
+    </header><!-- End Header -->
 
-            <h1 class="logo mr-auto"><a href="/">Tourly</a></h1>
+    
+    <section>
+      
+        {% for each in result %}
+        <div class="places">
+            <a href="#">{{ each }}</a>
+            
+        </div>
+        {% endfor %}
+    
+        
+    <!-- </section>
+    <section> -->
+    <div id='map' class='map-style'>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic2FzaHJpa2EiLCJhIjoiY2tvMzN0NHNjMG9xZjJ1cTlodTBxN2xzciJ9.TcN751iaLaz6f85CKL3aKA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11'
+    });
+    </script>
+    </div>
 
+    <!-- <h1>{{result}}</h1> -->
 
-            <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">About Us</a></li>
-                <li class="register text-center active"><a href="/register">Register Now</a></li>
-                </ul>
-            </nav><!-- .nav-menu -->
-
-            </div>
-        </header><!-- End Header -->
-
-
-        <!---Login form-->
-        <section id="register">
-            <form action="/register" method="POST">
-                <div class="login">
-                    <div class="login-screen">
-                        <div class="app-title">
-                            <h1>Login</h1>
-                        </div>
-                        <div class="login-form">
-                            <div class="control-group">
-                                <input type="text" class="login-field" value="" placeholder="Username" name="username">
-                            </div>
-                            <div class="control-group">
-                                <input type="password" class="login-field" value="" placeholder="Password" name="password">
-                            </div>
-                            <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
-                            <a href="/register">New User</a>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </section>
+    
+    
+</section>
 
 
 
