@@ -49,8 +49,8 @@
   </header><!-- End Header -->
 
 <section id="register">
-    <form>
-    <div class='login'>
+    <form action='/preference' method="POST">
+    <div class='login' >
         
             <div class="login-screen">
                 <div class="app-title">
@@ -58,54 +58,54 @@
                 </div>
                 
                     <div class="control-group">
-                        <label>Travel Location: </label>
-                        <input type="text" id="loc" name="locoftravel" placeholder="Your travel location">
+                        <label>City: </label>
+                        <input type="text" id="city" name="city" placeholder="Your travel city">
                     </div>
-                    <div class="control-group">
+                    <!-- <div class="control-group">
                         <label>Departure date: </label>
                         <input type="date" id="dep" name="date" placeholder="Departure Date">
                     </div>
                     <div class="control-group">
                         <label>Arrival date: </label>
                         <input type="text" id="arr" name="date" placeholder="Arrival Date">
-                    </div>
+                    </div> -->
                     <div class="control-group">
                         <label>Interests</label>
                     </div>
                     <div class="control-group">
                         
                         <label class="container">Historic Sites
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Mountains
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Forests
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Islands
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Temples
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Shopping Areas
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Adventure Places
-                            <input type="checkbox" >
-                            <span class="checkmark"></span>
-                            </label>
-                            <label class="container">Restaurants
-                            <input type="checkbox" >
-                            <span class="checkmark"></span>
-                            </label>
+                            <input type="checkbox" name="historic">
+                            <!-- <span class="checkmark"></span> -->
+                        </label>
+                        <label class="container">Architecture
+                            <input type="checkbox" name="architecture">
+                            <!-- <span class="checkmark"></span> -->
+                        </label>
+                        <label class="container">Cultural
+                            <input type="checkbox" name="cultural">
+                            <!-- <span class="checkmark"></span> -->
+                        </label>
+                        <label class="container">Nature
+                            <input type="checkbox" name="natural">
+                            <!-- <span class="checkmark"></span> -->
+                        </label>
+                        <label class="container">Religious places
+                            <input type="checkbox" name="religion">
+                            <!-- <span class="checkmark"></span> -->
+                        </label>
+                        <label class="container">Sports
+                            <input type="checkbox" name="sport">
+                            <!-- <span class="checkmark"></span> -->
+                        </label>
+                        <label class="container">Restaurants
+                            <input type="checkbox" name="foods">
+                            <!-- <span class="checkmark"></span> -->
+                        </label>
+                        <label class="container">Museums
+                            <input type="checkbox" name="museums">
+                            <!-- <span class="checkmark"></span> -->
+                        </label>
                     </div>
                     <input type="submit" value="Submit" class="btn btn-primary btn-large btn-block">
                 

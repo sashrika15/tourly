@@ -4,7 +4,7 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  background: #000000bd;
+  background: #292929;
   color: #fff;
 }
 
@@ -164,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 70px 0;
   overflow: hidden;
 }
 
@@ -510,3 +510,27 @@ section {
   .prefclass {
     text-align: left;
     }
+
+
+.map-style {
+  /* width: 600px;  */
+  /* height: 600px; */
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 80%;
+}
+
+.places {
+  background-color: #cda45e;
+  padding: 10px;
+  margin: 10px;
+  /* margin-top: 20px; */
+  border-radius: 5px
+
+}
+
+.places a{
+  color: white;
+}

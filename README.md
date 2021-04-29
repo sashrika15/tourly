@@ -22,5 +22,5 @@ Running on flask
 localhost:5000
 
 ## To-do
-
-Connext to db and complete login functionality
+- Add the preferences to the api request
+- Add markers for locations on map
