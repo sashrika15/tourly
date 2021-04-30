@@ -58,13 +58,25 @@
 
     
     <section>
+
+        <h2 class="title">Here are your recommended tourist spots!</h2>
       
-        {% for each in result %}
+        <!-- {% for each in result %}
+        <div class="row">
+            <div class="col places">{{ each }}</div>
+            <div class="w-100"></div>
+            
+            
+          </div>
+          {% endfor %} -->
+        
+          {% for each in result %}
         <div class="places">
             <a href="#">{{ each }}</a>
             
         </div>
         {% endfor %}
+        
     
         
     <!-- </section>

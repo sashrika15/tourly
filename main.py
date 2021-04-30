@@ -30,7 +30,7 @@ def login():
     cur.execute("SELECT * from accounts WHERE username=%s AND password= %s",(username,password))
     account = cur.fetchone()
     if account:
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile',name=username))
     else:
         return "Invalid username/password"
 
@@ -38,7 +38,8 @@ def login():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    name = request.args.get('name')
+    return render_template('profile.html',name=name)
 
 @app.route('/preference')
 def preference():
