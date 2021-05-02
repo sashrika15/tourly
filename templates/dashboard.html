@@ -25,12 +25,16 @@ Dashboard
 <section>
 
     <h2 class="title">{{ msg }}</h2>
-    {% for each in result %}
+
+    {% for key, value in result.items() %}
     <div class="places">
-        <a href="#">{{ each }}</a>
-        
+        <a href="#">{{ key }} : {{ value }}</a>
     </div>
     {% endfor %}
+
+
+
+
     
     <div id='map' class='map-style'>
         <script>

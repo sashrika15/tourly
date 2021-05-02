@@ -1,5 +1,5 @@
 import pymysql.cursors
-from flask import Flask, render_template,request,json,redirect,url_for
+from flask import Flask, render_template,request,json,redirect,url_for,session
 import requests
 import json
 
@@ -11,6 +11,7 @@ connection = pymysql.connect(host='localhost',
                             cursorclass=pymysql.cursors.DictCursor)
 
 app = Flask(__name__)
+app.secret_key = 'a random string'
 api_key = "5ae2e3f221c38a28845f05b674ad5fbdc89d5d4039b07c283619ac27"
 
 @app.route('/')
@@ -87,9 +88,12 @@ def pref():
     url = "https://api.opentripmap.com/0.1/en/places/geoname?name={}&apikey={}".format(city,api_key)
     r = requests.get(url = url)
     json_data = r.json()
-
+    res={}
+    
     lat = json_data['lat']
     lon = json_data['lon']
+    # res[str(city)]=[lat,lon]
+
     result = []
 
     url2="https://api.opentripmap.com/0.1/en/places/radius?radius={}&lon={}&lat={}&kinds={}&limit={}&apikey={}".format(100000,lon,lat,rs,10,api_key)
@@ -99,16 +103,23 @@ def pref():
     feat = data['features']
     for i in feat:
         prop = i['properties']
+        geo = i['geometry']
+        
         if len(str(prop['name']))!=0:
             
             result.append(str(prop['name']))
+            res[str(prop['name'])]=geo['coordinates']
+    
+    session['res'] = res
 
-    return redirect(url_for('dashboard',result=result,lat=lat,lon=lon,msg="Here are your recommended tourist spots!"))
+    return redirect(url_for('dashboard',result=res,lat=lat,lon=lon,msg="Here are your recommended tourist spots!"))
     
 
 @app.route('/dashboard')
 def dashboard():
-    result = request.args.getlist('result')
+
+    result = session['res']
+
     if request.args.get('msg'):
         msg = request.args.get('msg')
     else:
@@ -125,3 +136,4 @@ def dashboard():
         lon = 22.998851594142913
 
     return render_template('dashboard.html',result=result,msg=msg,lat=lat,lon=lon)
+
