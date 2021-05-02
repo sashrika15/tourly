@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+
+{% block title %}
+Directions
+{% endblock %}
+{% block stylesheet %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+<style>
+#map { position: absolute; top: 80px; bottom: 0; width: 100%; color:black; }
+</style>
+{% endblock %}
+
+{% block header_nav %}
+<nav class="nav-menu d-none d-lg-block">
+    <ul>
+        <li><a href="/profile">Home</a></li>
+        <li><a href="/preference">Preferences</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li class="active"><a href="/map">Map</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+<div id="map"></div>
+
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic2FzaHJpa2EiLCJhIjoiY2tvMzN0NHNjMG9xZjJ1cTlodTBxN2xzciJ9.TcN751iaLaz6f85CKL3aKA';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [78.22265625, 22.998851594142913],
+        zoom: 5
+    });
+
+    map.addControl(
+        new MapboxDirections({
+            accessToken: mapboxgl.accessToken
+        }),
+        'top-left'
+    );
+
+    map.addControl(new mapboxgl.NavigationControl());
+</script>
+{% endblock %}
+{% block footer %}
+{% endblock %}

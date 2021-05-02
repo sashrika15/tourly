@@ -1,20 +1,23 @@
-{% extends "base.html" %}
+{% extends "index.html" %}
 {% block title %}
 Preferences
 {% endblock %}
 {% block stylesheet %}
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/prefstyle.css') }}">
 {% endblock %}
+
 {% block header_nav %}
 <nav class="nav-menu d-none d-lg-block">
     <ul>
-      <li><a href="/profile">Home</a></li>
-      <li class="active"><a href="/preference">Preferences</a></li>
-      <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/profile">Home</a></li>
+        <li class="active"><a href="/preference">Preferences</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/map">Map</a></li>
     </ul>
   </nav>
-  {% endblock %}
-{% block form %}
+{% endblock %}
+
+{% block content %}
 <section id="register">
     <form action='/preference' method="POST">
     <div class='login' >
@@ -28,14 +31,14 @@ Preferences
                         <label>City: </label>
                         <input type="text" id="city" name="city" placeholder="Your travel city">
                     </div>
-                    <!-- <div class="control-group">
-                        <label>Departure date: </label>
-                        <input type="date" id="dep" name="date" placeholder="Departure Date">
+                    <div class="control-group">
+                        <label>How many stops do you have in mind? </label>
+                        <input type="number" id="stops" name="stops" placeholder="No. of stops">
                     </div>
                     <div class="control-group">
-                        <label>Arrival date: </label>
-                        <input type="text" id="arr" name="date" placeholder="Arrival Date">
-                    </div> -->
+                        <label>What radius would you like to cover? </label>
+                        <input type="number" id="radius" name="radius" placeholder="Radius">
+                    </div>
                     <div class="control-group">
                         <label>Interests</label>
                     </div>
