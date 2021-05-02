@@ -1,53 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-        <title>Tourly - Preferences</title>
-
-        <!-- Favicons -->
-        <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicon_io/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../static/assets/favicon_io/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../static/assets/favicon_io/favicon-16x16.png">
-        <link rel="manifest" href="../static/assets/favicon_io/site.webmanifest">
-
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-        <!-- Vendor CSS Files -->
-        <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-        <link href="../static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-        <link href="../static/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-        <link href="../static/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="../static/assets/vendor/venobox/venobox.css" rel="stylesheet">
-        <link href="../static/assets/vendor/aos/aos.css" rel="stylesheet">
-
-        <!-- Template Main CSS File -->
-        <!-- <link href="css/style.css" rel="stylesheet"> -->
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/prefstyle.css') }}">
-
-    </head>
-    <body>
-        <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center">
-
-      <h1 class="logo mr-auto"><a href="/profile">Tourly</a></h1>
-
-
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          <li><a href="/profile">Home</a></li>
-          <li class="active"><a href="/preference">Preferences</a></li>
-          <li><a href="/map">Map</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
-
-    </div>
-  </header><!-- End Header -->
-
+{% extends "base.html" %}
+{% block title %}
+Preferences
+{% endblock %}
+{% block stylesheet %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/prefstyle.css') }}">
+{% endblock %}
+{% block header_nav %}
+<nav class="nav-menu d-none d-lg-block">
+    <ul>
+      <li><a href="/profile">Home</a></li>
+      <li class="active"><a href="/preference">Preferences</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+    </ul>
+  </nav>
+  {% endblock %}
+{% block form %}
 <section id="register">
     <form action='/preference' method="POST">
     <div class='login' >
@@ -114,11 +81,4 @@
     </div>
 </form>
 </section>
-        
-    </body>
-
-
-</html>
-
-
-
+{% endblock %}

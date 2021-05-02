@@ -102,12 +102,26 @@ def pref():
         if len(str(prop['name']))!=0:
             
             result.append(str(prop['name']))
-            
-    return redirect(url_for('dashboard',result=result,lat=lat,lon=lon))
+
+    return redirect(url_for('dashboard',result=result,lat=lat,lon=lon,msg="Here are your recommended tourist spots!"))
     
 
 @app.route('/dashboard')
 def dashboard():
     result = request.args.getlist('result')
+    if request.args.get('msg'):
+        msg = request.args.get('msg')
+    else:
+        msg = "Welcome to the Dashboard!"
 
-    return render_template('dashboard.html',result=result)
+    if request.args.get('lat'):
+        lat = request.args.get('lat')
+    else:
+        lat = 78.22265625
+
+    if request.args.get('lon'):
+        lon = request.args.get('lon')
+    else:
+        lon = 22.998851594142913
+
+    return render_template('dashboard.html',result=result,msg=msg,lat=lat,lon=lon)

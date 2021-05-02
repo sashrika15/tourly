@@ -5,9 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tourly - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Tourly - {% block title %} Index {% endblock %}</title>
 
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicon_io/apple-touch-icon.png">
@@ -28,20 +26,22 @@
   <link href="../static/assets/vendor/aos/aos.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <!-- <link href="css/style.css" rel="stylesheet"> -->
+  {% block stylesheet %}
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+  {% endblock %}
 
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
+
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
       <h1 class="logo mr-auto"><a href="/">Tourly</a></h1>
 
-
+      {% block header_nav %}
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><a href="/">Home</a></li>
@@ -49,10 +49,11 @@
           <li class="register text-center"><a href="/register">Register Now</a></li>
         </ul>
       </nav><!-- .nav-menu -->
-
+      {% endblock %}
     </div>
   </header><!-- End Header -->
 
+  {% block content %}
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
@@ -69,7 +70,7 @@
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" >
@@ -101,11 +102,12 @@
       </div>
     </section><!-- End About Section -->
 
-    
+  {% endblock %}
 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
+  {% block footer %}
   <footer id="footer">
 
     <div class="container">
@@ -114,6 +116,7 @@
       </div>
     </div>
   </footer><!-- End Footer -->
+  {% endblock %}
 
 
 

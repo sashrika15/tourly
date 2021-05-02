@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Tourly - Registration</title>
+        <title>Tourly - {% block title %} Registration {% endblock %} </title>
 
         <!-- Favicons -->
         <link rel="apple-touch-icon" sizes="180x180" href="../static/assets/favicon_io/apple-touch-icon.png">
@@ -27,7 +27,9 @@
 
         <!-- Template Main CSS File -->
         <!-- <link href="css/style.css" rel="stylesheet"> -->
+        {% block stylesheet %}
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+        {% endblock %}
 
     </head>
 
@@ -38,7 +40,7 @@
 
             <h1 class="logo mr-auto"><a href="/">Tourly</a></h1>
 
-
+            {% block header_nav %}
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                 <li><a href="/">Home</a></li>
@@ -46,6 +48,7 @@
                 <li class="register text-center active"><a href="/register">Register Now</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
+            {% endblock %}
 
             </div>
         </header><!-- End Header -->
@@ -53,31 +56,18 @@
         {% block form%}
 
         {% endblock %}
-        <!---Login form-->
-        <!-- <section id="register">
-            <form action="/register" method="POST">
-                <div class="login">
-                    <div class="login-screen">
-                        <div class="app-title">
-                            <h1>Login</h1>
-                        </div>
-                        <div class="login-form">
-                            <div class="control-group">
-                                <input type="text" class="login-field" value="" placeholder="Username" name="username">
-                            </div>
-                            <div class="control-group">
-                                <input type="password" class="login-field" value="" placeholder="Password" name="password">
-                            </div>
-                            <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
-                            <a href="/register/newuser">New User</a>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </section> -->
 
 
-
+        {% block footer %}
+        <footer id="footer">
+      
+          <div class="container">
+            <div class="copyright">
+              &copy; Copyright <strong><span>Tourly</span></strong>. All Rights Reserved
+            </div>
+          </div>
+        </footer><!-- End Footer -->
+        {% endblock %}
 
         <!-- Vendor JS Files -->
         <script src="../static/assets/vendor/jquery/jquery.min.js"></script>
