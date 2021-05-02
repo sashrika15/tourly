@@ -15,7 +15,7 @@ git clone https://github.com/sashrika15/tourly.git
 ```
 cd tourly
 ```
-- Click on index.html to open it in your browser
+- Run flask app
 ```
 export FLASK_APP=main.py
 flask run
@@ -28,6 +28,7 @@ localhost:5000
 
 ## To-do
 
-- Add the preferences to the api request
-- Add markers for locations on map
-
+- Add decription for tourist spots
+- Add option for user to define radius they want to cover in city
+- Update readme with all details
+- Add navigation

@@ -33,13 +33,7 @@ body {
     z-index: 997;
     padding: 15px 0;
   }
-  
-  #header.header-scrolled {
-    top: 0;
-    background: rgba(0, 0, 0, 0.85);
-    border-bottom: 1px solid #37332a;
-  }
-  
+
   #header .logo {
     font-size: 28px;
     margin: 0;

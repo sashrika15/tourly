@@ -1,5 +1,5 @@
 import pymysql.cursors
-from flask import Flask, render_template,request,json,redirect,url_for
+from flask import Flask, render_template,request,json,redirect,url_for,session
 import requests
 import json
 
@@ -11,6 +11,7 @@ connection = pymysql.connect(host='localhost',
                             cursorclass=pymysql.cursors.DictCursor)
 
 app = Flask(__name__)
+app.secret_key = 'a random string'
 api_key = "5ae2e3f221c38a28845f05b674ad5fbdc89d5d4039b07c283619ac27"
 
 @app.route('/')
@@ -19,7 +20,11 @@ def home():
 
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    if request.args.get('message'):
+        msg = request.args.get('message')
+    else:
+        msg="Welcome!"
+    return render_template('register.html',message=msg)
 
 @app.route('/register',methods=['POST', 'GET'])
 def login():
@@ -30,15 +35,31 @@ def login():
     cur.execute("SELECT * from accounts WHERE username=%s AND password= %s",(username,password))
     account = cur.fetchone()
     if account:
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile',name=username))
     else:
         return "Invalid username/password"
 
     return render_template('register.html')
 
+@app.route('/register/newuser')
+def newuser():
+    return render_template('newuser.html')
+
+@app.route('/register/newuser',methods=['POST', 'GET'])
+def createaccount():
+    username=request.form['username']
+    password=request.form['password']
+    
+    cur = connection.cursor()
+    query = "INSERT INTO accounts VALUES ('{}','{}');".format(username,password)
+    cur.execute(query)
+    connection.commit()
+    return redirect(url_for('register',message='New user created! Please login'))
+
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    name = request.args.get('name')
+    return render_template('profile.html',name=name)
 
 @app.route('/preference')
 def preference():
@@ -46,60 +67,73 @@ def preference():
 
 @app.route('/preference',methods=['POST','GET'])
 def pref():
-    
+    rs=""
     city=request.form['city']
-    # if request.form.get("historic"):
-    #     op1_checked = True
-    #     rs+=" historic "
-    # if request.form.get("architecture"):
-    #     op2_checked = True
-    #     rs+=" architecture "
-    # if request.form.get("cultural"):
-    #     op1_checked = True
-    #     rs+=" cultural "
-    # if request.form.get("natural"):
-    #     op2_checked = True
-    #     rs+=" natural "
-    # if request.form.get("religion"):
-    #     op1_checked = True
-    #     rs+=" religion "
-    # if request.form.get("sport"):
-    #     op2_checked = True
-    #     rs+=" sport "
-    # if request.form.get("foods"):
-    #     op1_checked = True
-    #     rs+=" foods "
-    # if request.form.get("museums"):
-    #     op2_checked = True
-    #     rs+=" museums "
+    if request.form.get("historic"):
+        rs+="historic%2C"
+    if request.form.get("architecture"):
+        rs+="architecture%2C"
+    if request.form.get("cultural"):
+        rs+="cultural%2C"
+    if request.form.get("natural"):
+        rs+="natural%2C"
+    if request.form.get("religion"):
+        rs+="religion%2C"
+    if request.form.get("sport"):
+        rs+="sport%2C"
+    if request.form.get("foods"):
+        rs+="foods%2C"
+    if request.form.get("museums"):
+        rs+="museums%2C"
     url = "https://api.opentripmap.com/0.1/en/places/geoname?name={}&apikey={}".format(city,api_key)
     r = requests.get(url = url)
     json_data = r.json()
-
+    res={}
+    
     lat = json_data['lat']
     lon = json_data['lon']
+    # res[str(city)]=[lat,lon]
+
     result = []
 
-    url2="https://api.opentripmap.com/0.1/en/places/radius?radius={}&lon={}&lat={}&kinds={}&limit={}&apikey={}".format(100000,lon,lat,'historic',10,api_key)
+    url2="https://api.opentripmap.com/0.1/en/places/radius?radius={}&lon={}&lat={}&kinds={}&rate=1&limit={}&apikey={}".format(100000,lon,lat,rs,15,api_key)
 
     r1 = requests.get(url = url2)
     data = r1.json()
     feat = data['features']
     for i in feat:
-        # print(i)
         prop = i['properties']
+        geo = i['geometry']
+        
         if len(str(prop['name']))!=0:
             
             result.append(str(prop['name']))
-        # result+=prop['name']+", "
-        # print(result)
+            res[str(prop['name'])]=geo['coordinates']
     
-    # return "You entered result= {}".format(result)
-    return redirect(url_for('dashboard',result=result,lat=lat,lon=lon))
+    session['res'] = res
+
+    return redirect(url_for('dashboard',city=city,result=res,lat=lat,lon=lon,msg="Here are your recommended tourist spots!"))
     
 
 @app.route('/dashboard')
 def dashboard():
-    result = request.args.getlist('result')
 
-    return render_template('dashboard.html',result=result)
+    result = session['res']
+    city = request.args.get('city')
+    if request.args.get('msg'):
+        msg = request.args.get('msg')
+    else:
+        msg = "Welcome to the Dashboard!"
+
+    if request.args.get('lat'):
+        lat = request.args.get('lat')
+    else:
+        lat = 78.22265625
+
+    if request.args.get('lon'):
+        lon = request.args.get('lon')
+    else:
+        lon = 22.998851594142913
+
+    return render_template('dashboard.html',result=result,msg=msg,lat=lat,lon=lon,city=city)
+
