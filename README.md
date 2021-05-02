@@ -2,33 +2,72 @@
 
 An intelligent tourist system designed to give personalized tourist spot recommendations.
 
-Project for course SOFTWARE ENGINEERING AND PROJECT MANAGEMENT, course code 18CSC206J.
+This project was undertaken for course 18CSC206J.
+
+## What is Tourly?
+
+Tourly is a website designed to give the user tourist spot recommendations based on their personal interest.
+
+We collect information throught a 'preference' form and then give you recommendated spots!
+
+## APIs used
+
+- [OpenTripMap](https://opentripmap.io/product): This API is used to get recommendations for tourist places. 
+- [Mapbox](https://www.mapbox.com/): This API has been used to embed map in the website and provide navigation.
 
 ## Usage guidelines
 
-- Install flask
 - Clone the repository by pasting the following command in terminal
 ```
 git clone https://github.com/sashrika15/tourly.git
 ```
-- Change directory to /tourly or open directory /tourly in file explorer
+- Change directory to /tourly
 ```
 cd tourly
 ```
-- Run flask app
+- Install requirements
 ```
-export FLASK_APP=main.py
-flask run
+pip install -r requirements.txt
 ```
-
-## Updates
-
-Running on flask
+- Run main file
+```
+python main.py
+```
+- Open any web browser and paste the following
+```
 localhost:5000
+```
+## Demo
+- Home
+<img src="./assets/home.png">
+
+- About
+<img src="./assets/about.png">
+
+- Login
+<img src="./assets/login.png">
+
+- New User
+<img src="./assets/newuser.png">
+
+- Profile
+<img src="./assets/profile.png">
+
+- Preference
+<img src="./assets/preference.png">
+
+- Dashboard
+<img src="./assets/dashboard.png">
+
+- Map
+<img src="./assets/map.png">
 
 ## To-do
 
-- Add decription for tourist spots
-- Add option for user to define radius they want to cover in city
-- Update readme with all details
-- Add navigation
+- [ ] Add decription for tourist spots
+- [ ] Add navigation for the recommended tourist spots
+
+## Queries
+
+- Please open an issue if there are any problems.
+
