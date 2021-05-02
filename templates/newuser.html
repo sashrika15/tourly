@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% block form %}
         <section id="register">
-            <form action="/register" method="POST">
+            <form action="/register/newuser" method="POST">
                 <div class="login">
                     <div class="login-screen">
                         <div class="app-title">
-
-                            <h1>Login</h1>
-                            <h3> {{ message }}</h3>
+                            <h1>New User</h1>
                         </div>
                         <div class="login-form">
                             <div class="control-group">
@@ -16,8 +14,7 @@
                             <div class="control-group">
                                 <input type="password" class="login-field" value="" placeholder="Password" name="password">
                             </div>
-                            <input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
-                            <a href="/register/newuser">New User</a>
+                            <input type="submit" value="Create account" class="btn btn-primary btn-large btn-block">
                         </div>
                     </div>
                 </div>
