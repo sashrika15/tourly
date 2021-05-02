@@ -28,13 +28,9 @@ Dashboard
 
     {% for key, value in result.items() %}
     <div class="places">
-        <a href="#">{{ key }} : {{ value }}</a>
+        <a href="#">{{ key }}</a>
     </div>
     {% endfor %}
-
-
-
-
     
     <div id='map' class='map-style'>
         <script>
@@ -45,11 +41,23 @@ Dashboard
             center: [ {{ lon }}, {{ lat }} ],
             zoom: 15
         });
+        </script>
 
+        <script>
+            var marker = new mapboxgl.Marker()
+                .setLngLat([ {{ lon }}, {{ lat }} ])
+                .setPopup(new mapboxgl.Popup().setHTML("<a style='color:black;'>This is your city, {{ city }}!</a>"))
+                .addTo(map);
+        </script>
+
+        {% for key, value in result.items() %}
+        <script>
         var marker = new mapboxgl.Marker()
-            .setLngLat([{{ lon }}, {{ lat }}])
+            .setLngLat({{ value }})
+            .setPopup(new mapboxgl.Popup().setHTML("<a style='color:black;'>{{ key }}</a>"))
             .addTo(map);
         </script>
+        {% endfor %}
     </div>
 
 </section>

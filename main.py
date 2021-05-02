@@ -96,7 +96,7 @@ def pref():
 
     result = []
 
-    url2="https://api.opentripmap.com/0.1/en/places/radius?radius={}&lon={}&lat={}&kinds={}&limit={}&apikey={}".format(100000,lon,lat,rs,10,api_key)
+    url2="https://api.opentripmap.com/0.1/en/places/radius?radius={}&lon={}&lat={}&kinds={}&rate=1&limit={}&apikey={}".format(100000,lon,lat,rs,15,api_key)
 
     r1 = requests.get(url = url2)
     data = r1.json()
@@ -112,14 +112,14 @@ def pref():
     
     session['res'] = res
 
-    return redirect(url_for('dashboard',result=res,lat=lat,lon=lon,msg="Here are your recommended tourist spots!"))
+    return redirect(url_for('dashboard',city=city,result=res,lat=lat,lon=lon,msg="Here are your recommended tourist spots!"))
     
 
 @app.route('/dashboard')
 def dashboard():
 
     result = session['res']
-
+    city = request.args.get('city')
     if request.args.get('msg'):
         msg = request.args.get('msg')
     else:
@@ -135,5 +135,5 @@ def dashboard():
     else:
         lon = 22.998851594142913
 
-    return render_template('dashboard.html',result=result,msg=msg,lat=lat,lon=lon)
+    return render_template('dashboard.html',result=result,msg=msg,lat=lat,lon=lon,city=city)
 
