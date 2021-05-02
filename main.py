@@ -1,4 +1,3 @@
-import pymysql.cursors
 from flask import Flask, render_template,request,json,redirect,url_for,session
 import requests
 import json
@@ -156,3 +155,7 @@ def dashboard():
 @app.route('/map')
 def map():
     return render_template('map.html')
+
+
+if __name__=="__main__":
+    app.run()
