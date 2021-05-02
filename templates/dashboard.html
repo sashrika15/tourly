@@ -17,6 +17,7 @@ Dashboard
         <li><a href="/profile">Home</a></li>
         <li><a href="/preference">Preferences</a></li>
         <li class="active"><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/map">Map</a></li>
     </ul>
 </nav>
 {% endblock %}
@@ -27,6 +28,7 @@ Dashboard
     <h2 class="title">{{ msg }}</h2>
 
     {% for key, value in result.items() %}
+    <!-- http://www.wikidata.org/entity/ID where ID is an entity ID. -->
     <div class="places">
         <a href="#">{{ key }}</a>
     </div>
@@ -39,7 +41,7 @@ Dashboard
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [ {{ lon }}, {{ lat }} ],
-            zoom: 15
+            zoom: {{ zoom }}
         });
         </script>
 
